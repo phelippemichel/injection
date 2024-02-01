@@ -1,3 +1,4 @@
+import time
 import pymem
 
 def read_coordinates(process, address):
@@ -19,11 +20,20 @@ def main():
         y_address = 0x7FF6C3014690
         z_address = 0x7FF6C3014694
 
-        x_value = read_coordinates(process, x_address)
-        y_value = read_coordinates(process, y_address)
-        z_value = read_coordinates(process, z_address)
+        previous_coordinates = None
 
-        print(f"Coordinates: X={x_value}, Y={y_value}, Z={z_value}")
+        while True:
+            x_value = read_coordinates(process, x_address)
+            y_value = read_coordinates(process, y_address)
+            z_value = read_coordinates(process, z_address)
+
+            current_coordinates = (x_value, y_value, z_value)
+
+            if current_coordinates != previous_coordinates:
+                print(f"Coordinates: X={x_value}, Y={y_value}, Z={z_value}")
+                previous_coordinates = current_coordinates
+
+            time.sleep(1)
 
     except pymem.exception.ProcessNotFound:
         print(f"The process {process_name} was not found.")
