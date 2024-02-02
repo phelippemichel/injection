@@ -5,7 +5,7 @@ from os.path import exists
 class Log:
     _instance = None  # Armazena a instância única da classe
 
-     def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args, **kwargs):
         """
         Método especial para criar uma instância única da classe Log (singleton).
 
