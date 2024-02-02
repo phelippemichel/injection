@@ -1,0 +1,56 @@
+
+# Mensagens de Entrada do Mouse
+MK_LBUTTON = 0x0001
+MK_RBUTTON = 0x0002
+WM_MOUSEMOVE = 0x0200
+WM_LBUTTONDOWN = 0x0201
+WM_LBUTTONUP = 0x0202
+WM_RBUTTONDOWN = 0x0204
+WM_RBUTTONUP = 0x0205
+WM_MBUTTONDOWN = 0x0207
+WM_MBUTTONUP = 0x0208
+
+# Mensagens de Teclado
+WM_KEYDOWN = 0x0100
+WM_KEYUP = 0x0101
+
+# Teclas de Função
+VK_F1 = 0x70
+VK_F2 = 0x71
+VK_F3 = 0x72
+VK_F4 = 0x73
+VK_F5 = 0x74
+VK_F6 = 0x75
+VK_F7 = 0x76
+VK_F8 = 0x77
+VK_F9 = 0x78
+VK_F10 = 0x79
+VK_F11 = 0x7A
+VK_F12 = 0x7B
+
+# Teclas de Números
+VK_0 = 0x30
+VK_1 = 0x31
+VK_2 = 0x32
+VK_3 = 0x33
+VK_4 = 0x34
+VK_5 = 0x35
+VK_6 = 0x36
+VK_7 = 0x37
+VK_8 = 0x38
+VK_9 = 0x39
+
+# Mensagens do Sistema
+WM_SYSCOMMAND = 0x0112
+WM_QUERYENDSESSION = 0x0011
+WM_CLOSE = 0x0010
+
+# Mensagens de Controle
+WM_COMMAND = 0x0111
+WM_NOTIFY = 0x004E
+WM_CTLCOLORBTN = 0x0135
+
+# Mensagens de Janela
+WM_CREATE = 0x0001
+WM_DESTROY = 0x0002
+WM_SIZE = 0x0005
