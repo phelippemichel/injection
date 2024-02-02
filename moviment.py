@@ -1,5 +1,7 @@
 import time
 import random
+from key_codes import *
+from key_actions import send_message_keyboard
 
 def move_character(start, end):
     current_position = list(start)
@@ -26,9 +28,7 @@ def move_character(start, end):
         move_x,move_y = current_position[0] - end[0],current_position[1] - end[1]
     print(f"Chegou ao destino! Posição final: {end}")
 
-# Coordenadas iniciais e finais
 start_coordinate = (4141, 5251, 6)
 end_coordinate = (4144, 5242, 6)
 
-# Movendo o bonecor
 move_character(start_coordinate, end_coordinate)
