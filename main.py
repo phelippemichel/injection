@@ -1,5 +1,9 @@
 import time
 import pymem
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def read_coordinates(process, address):
     size = 4
@@ -11,14 +15,14 @@ def read_coordinates(process, address):
         raise ValueError(f"Failed to read memory at address {address}")
 
 def main():
-    process_name = "ravendawn_dx-1706708469.exe"
+    process_name = os.getenv("PROCESS_NAME")
 
     try:
         process = pymem.Pymem(process_name)
 
-        x_address = 0x7FF6C301468C
-        y_address = 0x7FF6C3014690
-        z_address = 0x7FF6C3014694
+        x_address = int(os.getenv("X_ADDRESS"), 16)
+        y_address = int(os.getenv("Y_ADDRESS"), 16)
+        z_address = int(os.getenv("Z_ADDRESS"), 16)
 
         previous_coordinates = None
 
