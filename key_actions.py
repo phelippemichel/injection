@@ -2,7 +2,7 @@ import ctypes
 import time
 from key_codes import *
 
-hwnd = ctypes.windll.user32.GetForegroundWindow.os.getenv("WINDOW_NAME")
+hwnd = ctypes.windll.user32.FindWindowW(0, 'Ravendawn - Pimpolhosz')
 
 def send_message_keyboard(hwnd, key_code):
     ctypes.windll.user32.PostMessageW(hwnd, WM_KEYDOWN, key_code, 0)
@@ -25,3 +25,6 @@ def clickMouse(hwnd, x, y, button="Mleft"):
     ctypes.windll.user32.PostMessageW(hwnd, WM_RBUTTONDOWN, 1)
     time.sleep(0.01)
     ctypes.windll.user32.PostMessageW(hwnd, WM_RBUTTONUP, 0)
+
+while True:
+    send_message_keyboard(hwnd, VK_W)
