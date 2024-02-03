@@ -14,14 +14,14 @@ def read_coordinates(process, address):
         raise ValueError(f"Failed to read memory at address {address}")
 
 def main():
-    process_name = 'ravendawn_dx-1706708469.exe'
+    process_name = 'ravendawn_dx-1706987613.exe'
 
     try:
         process = pymem.Pymem(process_name)
 
-        x_address = 0x7FF7B87A468C
-        y_address = 0x7FF7B87A4690
-        z_address = 0x7FF7B87A4694
+        x_address = 0x7FF775FD46BC
+        y_address = 0x7FF775FD46C0
+        z_address = 0x7FF775FD46C4
 
         previous_coordinates = None
 
@@ -36,7 +36,7 @@ def main():
                 print(f"Coordinates: X={x_value}, Y={y_value}, Z={z_value}")
                 previous_coordinates = current_coordinates
 
-            time.sleep(1)
+            time.sleep(0.1)
 
     except pymem.exception.ProcessNotFound:
         print(f"The process {process_name} was not found.")
