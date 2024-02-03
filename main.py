@@ -1,9 +1,8 @@
 import time
 import pymem
-from dotenv import load_dotenv
 import os
-
-load_dotenv()
+# from key_actions import *
+# from key_codes import *
 
 def read_coordinates(process, address):
     size = 4
@@ -15,7 +14,7 @@ def read_coordinates(process, address):
         raise ValueError(f"Failed to read memory at address {address}")
 
 def main():
-    process_name = os.getenv("PROCESS_NAME")
+    process_name = 'ravendawn_dx-1706708469.exe'
 
     try:
         process = pymem.Pymem(process_name)
@@ -45,6 +44,7 @@ def main():
         print(f"Error: {ve}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+
 
 if __name__ == "__main__":
     main()
