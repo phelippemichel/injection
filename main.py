@@ -20,9 +20,9 @@ def main():
     try:
         process = pymem.Pymem(process_name)
 
-        x_address = int(os.getenv("X_ADDRESS"), 16)
-        y_address = int(os.getenv("Y_ADDRESS"), 16)
-        z_address = int(os.getenv("Z_ADDRESS"), 16)
+        x_address = 0x7FF7B87A468C
+        y_address = 0x7FF7B87A4690
+        z_address = 0x7FF7B87A4694
 
         previous_coordinates = None
 
