@@ -25,6 +25,3 @@ def clickMouse(hwnd, x, y, button="Mleft"):
     ctypes.windll.user32.PostMessageW(hwnd, WM_RBUTTONDOWN, 1)
     time.sleep(0.01)
     ctypes.windll.user32.PostMessageW(hwnd, WM_RBUTTONUP, 0)
-
-while True:
-    send_message_keyboard(hwnd, VK_W)
