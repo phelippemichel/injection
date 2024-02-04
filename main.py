@@ -19,9 +19,9 @@ def main():
     try:
         process = pymem.Pymem(process_name)
 
-        x_address = 0x7FF775FD46BC
-        y_address = 0x7FF775FD46C0
-        z_address = 0x7FF775FD46C4
+        x_address = 0x7FF7D28D46BC
+        y_address = 0x7FF7D28D46C0
+        z_address = 0x7FF7D28D46C4
 
         previous_coordinates = None
 
