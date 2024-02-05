@@ -1,6 +1,6 @@
 from os.path import exists
 from sqlite3 import connect, Error
-import Log
+from core.Log import Log
 
 class Database:
     """
