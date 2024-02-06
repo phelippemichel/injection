@@ -1,6 +1,6 @@
 import ctypes
 import time
-from key_codes import *
+from core.key_codes import *
 
 hwnd = ctypes.windll.user32.FindWindowW(0, 'Ravendawn - Pimpolhosz')
 
