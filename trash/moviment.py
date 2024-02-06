@@ -1,6 +1,6 @@
 import time
 import ctypes
-from key_codes import *
+from core.key_codes import *
 from key_actions import send_message_keyboard
 
 hwnd = ctypes.windll.user32.FindWindowW(0, 'Ravendawn - Pimpolhosz')

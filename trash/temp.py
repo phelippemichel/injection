@@ -1,58 +1,58 @@
-import pymem
+# # import pymem
 
-def ler_valor_na_memoria(pid, module_name, offsets):
-    try:
-        process = pymem.Pymem(pid)
-        modules = process.list_modules()
-        target_module = next((module for module in modules if module.name.lower() == module_name.lower()), None)
+# # def ler_valor_na_memoria(pid, module_name, offsets):
+# #     try:
+# #         process = pymem.Pymem(pid)
+# #         modules = process.list_modules()
+# #         target_module = next((module for module in modules if module.name.lower() == module_name.lower()), None)
 
-        if target_module:
-            module_base = target_module.lpBaseOfDll
-            final_address = module_base
+# #         if target_module:
+# #             module_base = target_module.lpBaseOfDll
+# #             final_address = module_base
 
-            for offset in offsets:
-                offset_hex = hex(offset)[2:]
-                offset_int = int(offset_hex, 16)
-                final_address += offset_int
+# #             for offset in offsets:
+# #                 offset_hex = hex(offset)[2:]
+# #                 offset_int = int(offset_hex, 16)
+# #                 final_address += offset_int
 
-            # Lê o valor na memória considerando a ordem dos bytes little-endian
-            value_bytes = process.read_bytes(final_address, 4)
-            value = int.from_bytes(value_bytes, byteorder='little', signed=False)
+# #             # Lê o valor na memória considerando a ordem dos bytes little-endian
+# #             value_bytes = process.read_bytes(final_address, 4)
+# #             value = int.from_bytes(value_bytes, byteorder='little', signed=False)
 
-            return value
+# #             return value
 
-        else:
-            print(f"Módulo {module_name} não encontrado.")
-            return None
+# #         else:
+# #             print(f"Módulo {module_name} não encontrado.")
+# #             return None
 
-    except Exception as e:
-        print(f"Ocorreu uma exceção: {e}")
-        return None
+# #     except Exception as e:
+# #         print(f"Ocorreu uma exceção: {e}")
+# #         return None
 
-# Informações
-pid = 8720
-module_name = "ravendawn_dx-1706997596.exe"
+# # # Informações
+# # pid = 8720
+# # module_name = "ravendawn_dx-1706997596.exe"
 
-# Tente ler o valor esperado com offsets 0 e 1
-offsets_teste1 = [0x27C46BC] # Horizontal
-offsets_teste2 = [0x1C15398] # Vertical
-offsets_teste3 = [0x27C46C4] # Level
+# # # Tente ler o valor esperado com offsets 0 e 1
+# # offsets_teste1 = [0x27C46BC] # Horizontal
+# # offsets_teste2 = [0x1C15398] # Vertical
+# # offsets_teste3 = [0x27C46C4] # Level
 
-valor_lido_teste = ler_valor_na_memoria(pid, module_name, offsets_teste1)
+# # valor_lido_teste = ler_valor_na_memoria(pid, module_name, offsets_teste1)
 
-# Imprime o valor lido
-print(f"Valor lido: {valor_lido_teste}")
-valor_lido_teste = ler_valor_na_memoria(pid, module_name, offsets_teste2)
+# # # Imprime o valor lido
+# # print(f"Valor lido: {valor_lido_teste}")
+# # valor_lido_teste = ler_valor_na_memoria(pid, module_name, offsets_teste2)
 
-# Imprime o valor lido
-print(f"Valor lido: {valor_lido_teste}")
-valor_lido_teste = ler_valor_na_memoria(pid, module_name, offsets_teste3)
+# # # Imprime o valor lido
+# # print(f"Valor lido: {valor_lido_teste}")
+# # valor_lido_teste = ler_valor_na_memoria(pid, module_name, offsets_teste3)
 
-# Imprime o valor lido
-print(f"Valor lido: {valor_lido_teste}")
+# # # Imprime o valor lido
+# # print(f"Valor lido: {valor_lido_teste}")
 
 
-# #_----------------------------------------------------------------------
+# # #_----------------------------------------------------------------------
 
 # import pymem
 
@@ -81,9 +81,9 @@ print(f"Valor lido: {valor_lido_teste}")
 #                 if current_value == target_value:
 #                     # Calcula o offset
 #                     offset = current_address - module_base
-#                     if(f"0x{current_address:X}" == "0x7FF6484E46C4"):
-#                         print(f"Valor encontrado no endereço: 0x{current_address:X}")
-#                         print(f"Offset correspondente: 0x{offset:X}")
+#                     # if(f"0x{current_address:X}" == "0x7FF6484E46C4"):
+#                     print(f"Valor encontrado no endereço: 0x{current_address:X}")
+#                     print(f"Offset correspondente: 0x{offset:X}")
 #                     # offset_string = f"0x{offset:X}"
 
 # # Convertendo a string hexadecimal para um valor inteiro
@@ -111,8 +111,32 @@ print(f"Valor lido: {valor_lido_teste}")
 # module_name = "ravendawn_dx-1706997596.exe"
 
 # # Realiza a análise dinâmica para encontrar o offset
-# target_value = 6  # Substitua pelo valor desejado
+# target_value = 5132  # Substitua pelo valor desejado
 # offset_encontrado = encontrar_offset_por_valor(pid, module_name, target_value)
 # # print(offset_encontrado)
-# # temp = input("aperte qualquer coisa")
+# temp = input("aperte qualquer coisa")
+import psutil
+import ctypes
 
+def obter_hwnd_por_pid(pid):
+    hwnd = None
+    try:
+        processo = psutil.Process(pid)
+        # Obtenha a lista de janelas associadas ao processo
+        janelas = processo.window_handles()
+        if janelas:
+            # Retorne a primeira janela associada ao processo (pode haver mais de uma)
+            return janelas[0]
+        else:
+            print(f"O processo com PID {pid} não tem uma janela associada.")
+    except psutil.NoSuchProcess:
+        print(f"Não existe processo com o PID {pid}.")
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+
+# Substitua 'SEU_PID_AQUI' pelo PID do processo desejado
+pid_desejado = 8720
+hwnd_resultado = obter_hwnd_por_pid(pid_desejado)
+
+if hwnd_resultado is not None:
+    print(f"O HWND associado ao PID {pid_desejado} é: {hwnd_resultado}")

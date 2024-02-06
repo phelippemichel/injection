@@ -180,8 +180,27 @@ class Database:
         """
         return Database.select_all("SELECT * FROM category")
 
-    # ... (continua para os métodos restantes)
+    @staticmethod
+    def setCategory(name):
+        string = f"INSERT INTO category (name) VALUES('{name}');"
+        Database.insert(string)
+        
+    @staticmethod
+    def removeCategory(id: int):
+        """
+        Remove uma entrada da tabela 'movements' com base no ID do roteador e na versão.
 
+        Args:
+            id (int): ID do roteador associado ao movimento.
+            version (int): Número da versão do movimento.
+        """
+        string = f"DELETE FROM category WHERE id={id} "
+        Database.insert(string)    
+
+    @staticmethod
+    def getRoutes():
+        return Database.select_all("SELECT * FROM routes")
+    
     @staticmethod
     def setRoutes(name: str, category: int, start: tuple, end: tuple):
         """

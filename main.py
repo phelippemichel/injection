@@ -1,4 +1,4 @@
-from core.Load import Load
+from core import start
+from core.Database import Database
 
-Client = "ravendawn_dx-1706997596.exe"
-Pid = Load.get_pid(Client)
+start("ravendawn_dx-1706997596.exe")
